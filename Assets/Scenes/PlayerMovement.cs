@@ -3,10 +3,9 @@
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform ground;
-    Vector3 positionYMinusOne = new Vector3(0, 1.0f, 0);
-    public float movement = 500f;
-    public float upwardMovement = 50000f;
+    public float accelerate = 800f;
+    public float steer = 5f;
+    public float upwardMovement = 50f;
     // Start is called before the first frame update
     void Start() {
     }
@@ -22,41 +21,22 @@ public class PlayerMovement : MonoBehaviour
         // frame rate varies for different computers. 
         // use Time.deltaTime to create an even ground for equal speed of added force despite frame rate.
         if (Input.GetKey("w")) {
-            rb.AddForce(0, 0, movement * Time.deltaTime);
+            rb.AddForce(0, 0, accelerate * Time.deltaTime);
         }
         if (Input.GetKey("s")) {
-            rb.AddForce(0, 0, -movement * Time.deltaTime);
+            rb.AddForce(0, 0, -accelerate * Time.deltaTime);
         }
         if (Input.GetKey("a")) {
-            rb.AddForce(-movement * Time.deltaTime, 0, 0);
+            rb.AddForce(-steer * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
         if (Input.GetKey("d")) {
-            rb.AddForce(movement * Time.deltaTime, 0, 0);
+            rb.AddForce(steer * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
         if (Input.GetKey("space")) {
             // instead of calculating y position, try checking that the box collider has made contact
-            Debug.Log("Ground Position: "+(ground.position.y + positionYMinusOne.y));
-            Debug.Log("Player Position: "+ transform.position.y);
-            if((transform.position.y) == (ground.position.y + positionYMinusOne.y)) {
-                rb.AddForce(0, upwardMovement * Time.deltaTime, 0);
-            } else {
-                rb.AddForce(0, 0, 0);
-            }
+            // Debug.Log("Ground Position: "+(ground.position.y + positionYMinusOne.y));
+            // Debug.Log("Player Position: "+ transform.position.y);
+            rb.AddForce(0, upwardMovement * Time.deltaTime, 0, ForceMode.Impulse);
         }
     }
-
-    // this method is executed whenever a collision occurs.
-    void OnCollisionEnter(Collision collisionInfo) {
-        // collision is an instance of Collision, and there are other objects, methods and properties to access inside
-        Debug.Log(collisionInfo.collider.name);
-        if (collisionInfo.collider.name == "Obstacle") {
-            Debug.Log("Oh Shit!");
-        }
-    }
-
-    // public void move() {
-    //     if (w == "pressed") {
-    //         rb.AddForce(0, 0, 300);
-    //     }
-    // }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scenes\FollowPlayer.cs" />
      <Compile Include="Assets\Scenes\LevelTwoPlayer.cs" />
+     <Compile Include="Assets\Scenes\PlayerCollision.cs" />
      <Compile Include="Assets\Scenes\PlayerMovement.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Vanely/Documents/Unity Projects/ObstacleTraversal/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
