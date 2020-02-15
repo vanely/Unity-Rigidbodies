@@ -364,11 +364,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a945d9af31306e4a8290eaac9ec299b, type: 3}
+  m_Script: {fileID: 11500000, guid: d60135c4b238e6247b3ef3bf66fa2d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 534669905}
-  offset: {x: 0, y: 2, z: -8}
+  cam: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
   player: {fileID: 1084457633}
 --- !u!1 &678381705
 GameObject:
@@ -583,7 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1084457634}
-  player: {fileID: 1084457633}
+  ground: {fileID: 1988600859}
+  positionYMinusOne: {x: 0, y: 1, z: 0}
   movement: 500
   upwardMovement: 1500
 --- !u!1 &1196247334
@@ -799,7 +800,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3, z: -8}
 --- !u!23 &1988600857
 MeshRenderer:
   m_ObjectHideFlags: 0

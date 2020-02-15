@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform player;
+    public Transform ground;
+    Vector3 positionYMinusOne = new Vector3(0, 1.0f, 0);
     public float movement = 500f;
-    public float upwardMovement = 1500f;
+    public float upwardMovement = 50000f;
     // Start is called before the first frame update
     void Start() {
     }
@@ -15,11 +14,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update() {
         // Debug.Log(player.position);
-        
     }
 
     // when making changes to physics Unity prefers that the method used for the frame updates be FixedUpdate() rather than Update()
-    // collisions and physics changes become a lot smoother.
+    // collisions and physics changes become a lot smoother
     void FixedUpdate() {
         // frame rate varies for different computers. 
         // use Time.deltaTime to create an even ground for equal speed of added force despite frame rate.
@@ -36,7 +34,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(movement * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey("space")) {
-            rb.AddForce(0, upwardMovement * Time.deltaTime, 0);
+            // instead of calculating y position, try checking that the box collider has made contact
+            Debug.Log("Ground Position: "+(ground.position.y + positionYMinusOne.y));
+            Debug.Log("Player Position: "+ transform.position.y);
+            if((transform.position.y) == (ground.position.y + positionYMinusOne.y)) {
+                rb.AddForce(0, upwardMovement * Time.deltaTime, 0);
+            } else {
+                rb.AddForce(0, 0, 0);
+            }
         }
     }
 
