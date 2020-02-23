@@ -2760,6 +2760,7 @@ MonoBehaviour:
   rb: {fileID: 1084457634}
   gameManager: {fileID: 1518797181}
   ground: {fileID: 1988600859}
+  playerCollisionScript: {fileID: 1084457636}
   accelerate: 3000
   steer: 30
   upwardMovement: 50
@@ -2777,6 +2778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementScript: {fileID: 1084457635}
   gameManager: {fileID: 1518797181}
+  isAlive: 1
 --- !u!1 &1087528130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1084457633}
-  playerMovementScript: {fileID: 1084457635}
+  playerCollisionScript: {fileID: 1084457636}
   scoreText: {fileID: 1258215057}
   gameManager: {fileID: 1518797181}
 --- !u!1 &1417644505
@@ -3448,7 +3450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartDelay: 1
   playerMovementScript: {fileID: 1084457635}
+  playerCollisionScript: {fileID: 1084457636}
   completeLevelUI: {fileID: 308750727}
+  scoreText: {fileID: 1258215059}
 --- !u!4 &1518797182
 Transform:
   m_ObjectHideFlags: 0

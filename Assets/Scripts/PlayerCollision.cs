@@ -26,8 +26,8 @@ public class PlayerCollision : MonoBehaviour
         // we can call GetComponent<>(). 
         // the generic type of GetComponent<>() is the type of the component we want to manipulate.
         // the two are equal, we can still access all of the methods and properties of the given component.
-        Debug.Log(collisionInfo);
         if (collisionInfo.collider.tag == "Obstacle") {
+            Debug.Log(collisionInfo);    
             isAlive = false;
             // GetComponent<PlayerMovement>().enabled = false;
             playerMovementScript.enabled = false;

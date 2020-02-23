@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public GameManage gameManager;
     public Transform ground;
+    public PlayerCollision playerCollisionScript;
     bool canJump;
     public float accelerate = 1500f;
     public float steer = 30f;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         // Debug.Log(player.position);
         if (rb.position.y < 0) {
+            playerCollisionScript.isAlive = false;
             gameManager.EndGame();
         }
         if (transform.position.y > (ground.position.y + 1.2)) {
@@ -32,16 +34,16 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
         // frame rate varies for different computers. 
         // use Time.deltaTime to create an even ground for equal speed of added force despite frame rate.
-        if (Input.GetKey("w")) {
+        if (Input.GetKey("w") || Input.GetKey(KeyCode.UpArrow)) {
             rb.AddForce(0, 0, accelerate * Time.deltaTime);
         }
-        if (Input.GetKey("s")) {
+        if (Input.GetKey("s") || Input.GetKey(KeyCode.DownArrow)) {
             rb.AddForce(0, 0, -accelerate * Time.deltaTime);
         }
-        if (Input.GetKey("a")) {
+        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow)) {
             rb.AddForce(-steer * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
-        if (Input.GetKey("d")) {
+        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)) {
             rb.AddForce(steer * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
         // if (canJump && Input.GetKey("space")) {

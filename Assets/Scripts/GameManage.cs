@@ -4,26 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManage : MonoBehaviour {
-    bool gameHasEnded = false;
     public float restartDelay = 1f;
     // class/ type GameObject allows us access to methods, and variables pertaining to game objects from our Hierarchy view.
     public PlayerMovement playerMovementScript;
     public PlayerCollision playerCollisionScript;
     public GameObject completeLevelUI;
-    // public GameObject scoreText;
     
     // EndGame() will be called in instances where the player triggers a game over.
     public void EndGame() {
 
-        if(!gameHasEnded) {
-            gameHasEnded = !gameHasEnded;
+        if (!playerCollisionScript.isAlive) {
             Invoke("Restart", restartDelay);
         }
+        
     }
 
     void Restart() {
         // SceneManager.LoadScene("Level-1");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // can load scene by name (SceneManager.GetActiveScene().name), or by build index 
+        // (SceneManager.GetActiveScene().buildIndex). Best practice is build index
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void CompleteLevel() {

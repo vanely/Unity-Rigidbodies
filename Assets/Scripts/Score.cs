@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+// allows access to text class
 using UnityEngine.UI;
 using System;
 
