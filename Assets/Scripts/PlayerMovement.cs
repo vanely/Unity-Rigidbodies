@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public GameManage gameManager;
     public Transform ground;
     public PlayerCollision playerCollisionScript;
-    bool canJump;
+    bool canJump = true;
     public float accelerate = 1500f;
     public float steer = 30f;
     public float upwardMovement = 50f;
@@ -22,11 +22,11 @@ public class PlayerMovement : MonoBehaviour
             playerCollisionScript.isAlive = false;
             gameManager.EndGame();
         }
-        if (transform.position.y > (ground.position.y + 1.2)) {
-            canJump = false;
-        } else {
-            canJump = true;
-        }
+        // if (transform.position.y > (ground.position.y + 1.2)) {
+        //     canJump = false;
+        // } else {
+        //     canJump = true;
+        // }
     }
 
     // when making changes to physics Unity prefers that the method used for the frame updates be FixedUpdate() rather than Update()
@@ -46,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)) {
             rb.AddForce(steer * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
-        // if (canJump && Input.GetKey("space")) {
-        //     // instead of calculating y position, try checking that the box collider has made contact
-        //     // Debug.Log("Ground Position: "+(ground.position.y + positionYMinusOne.y));
-        //     Debug.Log("Player Jump: "+ transform.position.y);
-        //     rb.AddForce(0, upwardMovement * Time.deltaTime, 0, ForceMode.Impulse);
-        // }
+        if (canJump && Input.GetKey("space")) {
+            // instead of calculating y position, try checking that the box collider has made contact
+            // Debug.Log("Ground Position: "+(ground.position.y + positionYMinusOne.y));
+            Debug.Log("Player Jump: "+ transform.position.y);
+            rb.AddForce(0, upwardMovement * Time.deltaTime, 0, ForceMode.Impulse);
+        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
+// NOTE: when a game object is dragged into the project view, it becomes a prefab. When prefabs are edited, all instances of the given prefab across all scenes will update. Similar to a pointer
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement playerMovementScript;
@@ -10,7 +10,7 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Scene Count: "+SceneManager.sceneCount);
     }
 
     // Update is called once per frame
